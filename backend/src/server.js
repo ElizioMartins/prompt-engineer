@@ -4,6 +4,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
+// Importar rotas
+import analyzeRoutes from './routes/analyze.routes.js';
+
 // Configuração ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,10 +36,12 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Rotas da API (serão adicionadas nas próximas partes)
+// Rotas da API
+app.use('/api/analyze', analyzeRoutes);
+
+// Rotas futuras (Part 4)
 // app.use('/api/prompts', promptRoutes);
 // app.use('/api/templates', templateRoutes);
-// app.use('/api/analyze', analyzeRoutes);
 
 // Catch-all: retorna index.html para rotas do Angular
 app.get('*', (req, res) => {
